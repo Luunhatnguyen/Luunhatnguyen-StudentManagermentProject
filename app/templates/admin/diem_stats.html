@@ -1,0 +1,36 @@
+{% extends 'admin/base.html' %}
+
+{% block body %}
+<h1 class="text-center text-info" style="margin: 25px">XUẤT ĐIỂM TRUNG BÌNH THEO NĂM HỌC</h1>
+
+<form action="/admin/xuatviewdiem/">
+    <div class="form-group">
+        <input type="text" class="form-control" name="nam_hoc" placeholder="Nhap nam hoc.." />
+    </div>
+    <input type="submit" value="Xuất điểm" class="btn btn-success" />
+</form>
+
+<h3 class="text-center text-info" style="margin: 25px">Bảng điểm trung bình của lớp học</h3>
+<div>
+        <table class="table">
+            <tr>
+                <th>Tên lớp</th>
+                <th>Học kì</th>
+                <th>Năm học</th>
+                <th>Họ tên học sinh</th>
+                <th>Môn học</th>
+                <th>Điểm trung bình</th>
+            </tr>
+            {% for s in stats %}
+            <tr><td>{{ s[0] }}</td>
+                <td>{{ s[1] }}</td>
+                <td>{{ s[2] }}</td>
+                <td>{{ s[3] }}</td>
+                <td>{{ s[4] }}</td>
+                <td>{{ s[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>
+
+{% endblock %}

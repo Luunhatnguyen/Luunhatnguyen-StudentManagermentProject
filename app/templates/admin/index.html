@@ -1,0 +1,247 @@
+{% extends 'admin/base.html' %}
+
+
+{% block body %}
+
+{% if current_user.is_authenticated %}
+    <div class="background">
+        <img src=" {{ url_for('static', filename='images/hero-bg.jpg') }}" alt="background">
+    </div>
+    <section id="hero" class="d-flex align-items-center" >
+        <div class="container position-relative aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+          <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-9 text-center" style="margin-top:150px">
+              <h1 style="font-size: 56px, font-weight: 700, line_height: 72px, color: #124265">Welcom <span class="text-info">{{ current_user.name }}</span> To Admin Dashboard</h1>
+              <h3>For administrators only!</h3>
+                <hr class="intro-divider">
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!--    Thống kê các thành phần có trong trường-->
+    <div class="row icon-boxes" style="margin-top:200px; margin-bottom:200px" >
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-stack-line"></i></div>
+            <h4 class="title"><a href="">Học Sinh</a></h4>
+            {% for s in hocsinh_stats %}
+                <p class="description" style="text-align:center; color: blue;">{{ s[0] }}</p>
+              {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-palette-line"></i></div>
+            <h4 class="title"><a href="">Giáo Viên</a></h4>
+            {% for g in giaovien_stats %}
+                <p class="description" style="text-align:center; color: blue;">{{ g[0] }}</p>
+              {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="400">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-command-line"></i></div>
+            <h4 class="title"><a href="">Lớp Học</a></h4>
+            {% for l in lop_stats %}
+                <p class="description" style="text-align:center; color: blue;">{{ l[1] }}</p>
+              {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="500">
+          <div class="icon-box">
+            <div class="icon"><i class="ri-fingerprint-line"></i></div>
+            <h4 class="title"><a href="">Nhân Viên</a></h4>
+            {% for n in nhanvien_stats %}
+                <p class="description" style="text-align:center; color: blue;">{{ n[0] }}</p>
+              {% endfor %}
+          </div>
+        </div>
+
+      </div>
+
+<!--footer-->
+<footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>OnePage</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form style="margin-top: 15px;" class="form-inline" action="/action_page.php">
+                <input class="form-control mr-sm-2" type="text">
+                <button class="btn btn-success" type="submit">Subscribe</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          © Copyright <strong><span>OnePage</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+
+{% else %}
+<section class="login-block" style="margin-top:50px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+                <h2 class="text-center">Login Now</h2>
+                <form class="login-form" method="post" action="{{ url_for('admin_login') }}">
+                    <div class="form-group">
+                        <label for="username" class="text-uppercase">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="text-uppercase">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-check">
+                        <input type="submit" value="Dang nhap" class="btn btn-danger" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8 banner-sec">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+                      <!-- Indicators -->
+                      <ul class="carousel-indicators">
+                        <li data-target="#demo" data-slide-to="0" class="active"></li>
+                        <li data-target="#demo" data-slide-to="1"></li>
+                        <li data-target="#demo" data-slide-to="2"></li>
+                      </ul>
+
+                      <!-- The slideshow -->
+                      <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                          <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="Los Angeles">
+                        </div>
+                        <div class="carousel-item">
+                          <img class="d-block img-fluid" src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" alt="Chicago">
+                        </div>
+                        <div class="carousel-item">
+                          <img class="d-block img-fluid" src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" alt="New York">
+                        </div>
+                      </div>
+
+                      <!-- Left and right controls -->
+                      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                      </a>
+                      <a class="carousel-control-next" href="#demo" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                      </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br><br>
+
+<div class="footer-content" style="margin-left: -203px; margin-right: -204px;">
+    <div class="jumbotron">
+      <div class="contact" style="display: flex; width: 80%; margin: 0 auto;" >
+         <ul style="width: 23%; list-style-type: none;">
+           <h3>Mentor</h3>
+           <li><a href="#">A108 Adam Street</a></li>
+           <li><a href="#">New York, NY 535022 United States</a></li>
+           <li style="margin-top: 15px;"><a href="#">Phone: +1 5589 55488 55</a></li>
+           <li><a href="#">Email: info@example.com</a></li>
+         </ul>
+        <ul style="width: 23%; list-style-type: none;">
+           <h5>Useful Links</h5>
+           <li><a href="#"> Home</a></li>
+           <li><a href="#">About us </a></li>
+           <li><a href="#">Services</a></li>
+           <li><a href="#">Terms of service</a></li>
+           <li><a href="#">Privacy policy</a></li>
+        </ul>
+        <ul style="width: 23%; list-style-type: none;">
+           <h5>Our Services</h5>
+           <li><a href="#">Web Design</a></li>
+           <li><a href="#">Web Development</a></li>
+           <li><a href="#">Product Management</a></li>
+           <li><a href="#">Marketing</a></li>
+          <li><a href="#">Graphic Design</a></li>
+        </ul>
+        <ul style="list-style-type: none;">
+           <h5>Join Our Newsletter</h5>
+           <li><a href="#">Tamen quem nulla quae legam multos aute sint culpa legam noster magna</a></li>
+
+          <form style="margin-top: 15px;" class="form-inline" action="/action_page.php">
+            <input class="form-control mr-sm-2" type="text">
+            <button class="btn btn-success" type="submit">Subscribe</button>
+          </form>
+        </ul>
+      </div>
+        <div style="text-align: center;">
+          <p class="foot-text;">
+            © Copyright <span style="font-weight: 500; ">Mentor</span>. All Rights Reserved
+        Designed by <a href="#">BootstrapMade</a>
+          </p>
+      </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+

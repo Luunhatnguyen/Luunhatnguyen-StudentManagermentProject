@@ -1,0 +1,120 @@
+{% extends 'admin/base.html' %}
+
+{% block body %}
+<h1 class="text-center text-info" style="margin: 25px">THỐNG KÊ ĐIỂM TRUNG BÌNH</h1>
+
+<!--thống kê điểm trung bình của từng học sinh theo lớp-->
+
+<form action="/admin/statsviewdiem/">
+    <div class="form-group">
+        <input type="text" class="form-control" name="ten_lop" placeholder="Nhap ten lop muon thong ke..." />
+        <input type="text" class="form-control" name="ki_hoc" placeholder="Nhap ki hoc..." />
+        <input type="text" class="form-control" name="nam_hoc" placeholder="Nhap nam hoc.." />
+        <input type="text" class="form-control" name="mon_hoc" placeholder="Nhap mon hoc.." />
+    </div>
+    <input type="submit" value="Thống kê" class="btn btn-success" />
+</form>
+
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <table class="table">
+            <tr>
+                <th>Lớp</th>
+                <th>Đạt</th>
+                <th>Sỉ số</th>
+                <th>Tỉ lệ</th>
+            </tr>
+            {% for d in diemtb %}
+            <tr>
+                <td>{{ d[0] }}</td>
+                <td>{{ d[4] }}</td>
+                <td>{{ d[5] }}</td>
+                <td>{{ d[4]/d[5] * 100 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+<!--    chartjs-->
+    <div class="col-md-6 col-xs-12">
+    <canvas id="myChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+            let data =[]
+            let labels = []
+
+            {% for d in diemtb %}
+                data.push({{d[4]}})
+                data.push({{d[5]}})
+            {% endfor %}
+
+            window.onload =function()
+            {
+                const ctx = document.getElementById('myChart');
+                const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Đạt','Không đạt'],
+                    datasets: [{
+                        label: 'Thống kê điểm trung bình các lớp',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            }
+        </script>
+    </div>
+</div>
+
+<!--danh sách điểm trung binh tất cả các lớp-->
+<h3 class="text-center text-info" style="margin: 25px">Bảng thống kê điểm trung bình tất cả các lớp</h3>
+<div>
+        <table class="table">
+            <tr>
+                <th>Tên lớp</th>
+                <th>Học kì</th>
+                <th>Năm học</th>
+                <th>Họ tên học sinh</th>
+                <th>Môn học</th>
+                <th>Điểm trung bình</th>
+            </tr>
+            {% for s in stats %}
+            <tr><td>{{ s[0] }}</td>
+                <td>{{ s[1] }}</td>
+                <td>{{ s[2] }}</td>
+                <td>{{ s[3] }}</td>
+                <td>{{ s[4] }}</td>
+                <td>{{ s[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %} Trang chu {% endblock %}
+
+{% if current_user.is_authenticated  %}
+
+{% block header %}
+    <nav class="navbar navbar-expand-md">
+  <!-- Navbar links -->
+      <div class="collapse navbar-collapse mgl-5" id="collapsibleNavbar">
+            <a class="ou" href="#">OU SCHOOL</a>
+      </div>
+
+
+       <div class="dropdown" style="margin-right: 10px">
+          <a href="{{ url_for('register') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('rule_age') }}">
+                 <button class="btn btn-success border" >
+                        Change in Age
+                 </button>
+              </a>
+              </li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('number_rule') }}">
+                 <button class="btn btn-success border" >
+                   Rule si so
+                </button>
+              </a>
+              </li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('subjects') }}">
+                 <button class="btn btn-success border" >
+               Rule mon hoc
+                </button>
+              </a>
+              </li>
+          </ul>
+      </div>
+
+        <div class="dropdown" style="margin-right: 10px">
+          <a href="{{ url_for('register') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Create <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('register') }}">
+                <button class="btn btn-success border" >
+                Create Account
+            </button>
+              </a>
+              </li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('regiter_hocsinh') }}">
+                    <button class="btn btn-success border" >
+                   Add Student
+                </button></a>
+              </li>
+          </ul>
+      </div>
+
+    </nav>
+
+
+
+<script>
+    function Show() {
+        modal.classList.add('open')
+    }
+
+    function Hide() {
+        modal.classList.remove('open')
+    }
+    const siginBtn = document.querySelectorAll('.js-login')
+    const modal = document.querySelector('.js-modal')
+    const modalClose = document.querySelector('.js-modal-close')
+
+    siginBtn.addEventListener("click", Show)
+
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+ <div class="banner">
+     <img class="width-100" src="{{ url_for('static', filename='images/student_banner.png') }}" alt="banner">
+     <span class="banner-text">Learning Today, Leading Tomorrow</span>
+ </div>
+
+    <br><br>
+
+{% endblock %}
+
+{% endif %}

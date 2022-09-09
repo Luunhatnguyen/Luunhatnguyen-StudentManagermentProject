@@ -1,0 +1,19 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Trang chu {% endblock %}
+
+{% block content %}
+{% if error_msg %}
+<div class="alert alert-danger">
+    {{ error_msg }}
+</div>
+{% endif %}
+ <div>
+     <img class="width-100" src="{{ url_for('static', filename='images/student_banner.png') }}" alt="banner">
+     <span class="banner-text">Learning Today, Leading Tomorrow</span>
+ </div>
+
+<br><br>
+
+
+{% endblock %}

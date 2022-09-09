@@ -1,0 +1,95 @@
+
+
+{% extends 'layout/base.html' %}
+
+{% block title %} Trang chu {% endblock %}
+
+{% block header %}
+<div class="pagestudent">
+     <button class="btn btn-success border" type="submit">
+            <a class="btnlogout " href="{{url_for('home') }}">Home</a>
+     </button>
+</div>
+{%  endblock %}
+
+{% block content %}
+
+
+{% if error_msg %}
+<div class="alert alert-danger">
+    {{ error_msg }}
+</div>
+{% endif %}
+
+
+    <h1 class="text-center text-danger">Quản lý môn học</h1>
+
+    <hr>
+        <form style="margin-left: 10%;">
+              <input type="text" name="keyword" placeholder="Nhập môn học muốn tìm..." />
+              <input type="submit" value="Tìm" />
+        </form>
+
+    <hr>
+
+    <div class="subject">
+        <form action="{{ url_for('subjects_remove') }}" method="post">
+            <table class="table" border="1" style="width: 70%; margin: 0 auto" >
+                <tr>
+                    <th>ID</th>
+                    <th>Tên môn học</th>
+                    <th></th>
+                </tr>
+                {% for s in subjects %}
+                <tr id="sub{{ s.IDMonHoc }}">
+                    <td id="{{ s.IDMonHoc }}" name="{{ s.IDMonHoc }}">{{ s.IDMonHoc }}</td>
+                    <td>
+                        {{ s.TenMH }}
+                    </td>
+                    <td>
+                        <input type="submit"
+                               onclick="deleteSub({{ s.IDMonHoc }})"
+                               value="Delete"
+                               class="btn btn-danger del" />
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+
+
+
+    <div>
+        <form method="post" action="{{ url_for('subject_add') }}">
+            <div>
+                <label for="TenMH">Tên môn học:</label>
+                <input type="text" id="TenMH" name="TenMH">
+            </div>
+            <div>
+                <button type="submit" onclick="Create()">Thêm</button>
+            </div>
+        </form>
+    </div>
+
+
+<!--<script>-->
+<!--    function deleteSub(IDMonHoc){-->
+<!--        if(confirm("Ban chac chan xoa mon hoc nay khong??") == true) {-->
+<!--            fetch('/api/deleteSub/' + IDMonHoc, {-->
+<!--                method: 'delete'-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json'-->
+<!--                }-->
+<!--            }).then(res => res.json()).then(data => {-->
+<!--                let e = document.getElementById("sub" + IDMonHoc)-->
+<!--                e.style.display = "none"-->
+
+<!--            }).catch(err => console.error(err))-->
+<!--        }-->
+
+<!--    }-->
+
+<!--</script>-->
+
+{%endblock%}

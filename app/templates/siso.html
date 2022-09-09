@@ -1,0 +1,60 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Trang chu {% endblock %}
+
+{% block header %}
+<div class="pagestudent">
+     <button class="btn btn-success border" type="submit">
+            <a class="btnlogout " href="{{url_for('home') }}">Home</a>
+     </button>
+</div>
+{%  endblock %}
+
+{% block content %}
+<h1 class="text-center text-success"> SỬA SĨ SỐ </h1>
+
+
+{% if error_msg %}
+<div class="alert alert-danger">
+    {{ error_msg }}
+</div>
+{% endif %}
+
+<div class="modal-login">
+    <form method="post" class="was-validated" action="{{ url_for('number_rule') }}" enctype="multipart/form-data">
+           <div class="login-user">
+                <div class="f-left">
+                    <div class="form-group" style="padding-top: 30px">
+                            <label for="IDlop">Chọn lớp:</label>
+                            <select name="IDlop" id="IDlop">
+                                {% for l in lop %}
+                                    <option value="{{ l[1] }}">{{ l[0] }}</option>
+                                {% endfor %}
+                            </select>
+                          <br><br>
+                    </div>
+                </div>
+                <div class="f-right">
+                     <div class="form-group">
+                            <label >Sĩ số hiện tại:</label>
+                            {% for siso in idlop %}
+                                <span class="form-control" >{{ siso[1] }}</span>
+                            {% endfor %}
+                            <label >Sĩ số tối đa hiện tại:</label>
+                            <span class="form-control" >{{maxNumber}}</span>
+                     </div>
+                    <div class="form-group">
+                            <label for="maxNumber">(Thay đổi) Mức Sĩ số tối đa :</label>
+                            <input type="text" class="form-control" id="maxNumber" name="maxNumber"
+                            placeholder="{{end_number_valid}}">
+                    </div>
+                </div>
+           </div>
+                  <input type="submit" value="Commit" class="btn btn-danger">
+     </form>
+</div>
+<br><br>
+
+
+
+{% endblock %}

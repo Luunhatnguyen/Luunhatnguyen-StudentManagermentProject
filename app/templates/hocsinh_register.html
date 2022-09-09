@@ -1,0 +1,104 @@
+
+
+{% extends 'layout/base.html' %}
+
+{% block title %} Trang chu {% endblock %}
+
+{% block header %}
+<div class="pagestudent">
+     <button class="btn btn-success border" type="submit">
+            <a class="btnlogout " href="{{url_for('home') }}">Home</a>
+     </button>
+</div>
+{%  endblock %}
+
+{% block content %}
+<h1 class="text-center text-success"> THÊM HỌC SINH </h1>
+
+
+{% if error_msg %}
+<div class="alert alert-danger">
+    {{ error_msg }}
+</div>
+{% endif %}
+
+<div class="modal-login">
+    <form method="post" class="was-validated" action="{{ url_for('regiter_hocsinh') }}" enctype="multipart/form-data">
+           <div class="login-user">
+                <div class="f-left">
+                    <div class="form-group">
+                          <label for="IDHocSinh">ID Học Sinh: </label>
+                          <input type="text" id="IDHocSinh" class="form-control" name="IDHocSinh" >
+                    </div>
+                    <div class="form-group">
+                          <label for="name">Họ tên: </label>
+                          <input type="text" id="name" class="form-control" name="name" >
+                       </div>
+                    <div class="form-group">
+                                    <label for="gender">Giới tính: </label>
+                                        <select id="gender" name="gender" class="form-control" >
+                                            <option class="form-control" value='Nam'>nam</option>
+                                            <option class="form-control" value='Nữ'>nữ</option>
+                                        </select>
+                      </div>
+                    <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" >
+                      </div>
+                    <div class="form-group">
+                            <label for="birthday">Ngày sinh:</label>
+                            <div id="notify" style="display: none">thong bao</div>
+                            <input type="date" class="form-control" id="birthday" name="birthday" >
+                      </div>
+                    <div class="form-group">
+                            <label for="numbers">Số điện thoại:</label>
+                            <input type="text" class="form-control" id="numbers" name="numbers" >
+                      </div>
+                    <div class="form-group">
+                            <label for="address">Địa chỉ học sinh:</label>
+                            <input type="text" class="form-control" id="address" name="address" >
+                      </div>
+                </div>
+    <!--                form-right-->
+                <div class="f-right">
+                      <div class="form-group">
+                            <label for="username">Tên đăng nhập:</label>
+                            <input type="text" class="form-control" id="username" name="username" >
+                      </div>
+                      <div class="form-group">
+                            <label for="password">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="password" name="password" >
+                      </div>
+                      <div class="form-group">
+                            <label for="confirm">Xác nhận mật khẩu:</label>
+                            <input type="password" class="form-control" id="confirm" name="confirm" >
+                      </div>
+                      <div class="form-group">
+                           <label for="avatar">Anh dai dien</label>
+                           <input type="file" name="avatar" class="form-control" id="avatar" />
+                      </div>
+                      <div class="form-group" style="padding-top: 30px">
+                            <label for="lop">Chọn lớp:</label>
+                            <select name="lop" id="lop">
+                                <option value="">trống</option>
+                                {% for l in lop %}
+                                    <option value="{{ l[1] }}">{{ l[0] }}</option>
+                                {% endfor %}
+                            </select>
+                          <br><br>
+                      </div>
+                      <div class="form-group">
+                           <label for="note">Ghi chú...</label>
+                           <input type="text" name="note" class="form-control" id="note" />
+                      </div>
+                </div>
+           </div>
+                  <input type="submit" value="Create" class="btn btn-danger">
+     </form>
+</div>
+<br><br>
+
+
+
+{% endblock %}
+

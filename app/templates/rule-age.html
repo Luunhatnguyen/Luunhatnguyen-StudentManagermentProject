@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+
+{% block header %}
+<div class="pagestudent">
+     <button class="btn btn-success border" type="submit">
+            <a class="btnlogout " href="{{url_for('home') }}">Home</a>
+     </button>
+</div>
+{%  endblock %}
+
+{% block content %}
+
+{% if error_msg %}
+<div class="alert alert-danger">
+    {{ error_msg }}
+</div>
+{% endif %}
+
+<form class="form-group" action="{{ url_for('rule_age') }}" method="post">
+    <div>
+        <h3>thay doi do tuoi quy dinh</h3>
+    </div>
+    <div>
+        <label for="from_age">tuoi bat dau </label>
+        <input type="text" id="from_age" class="form-control" name="from_age"
+                placeholder="{{from_age_valid}}" >
+    </div>
+    <div>
+        <label for="end_age">tuoi ket thuc </label>
+        <input type="text" id="end_age" class="form-control" name="end_age"
+                 placeholder="{{end_age_valid}}" >
+    </div>
+    <input type="submit" class="btn btn-danger">
+</form>
+<!--pattern="[10-25]{2}" title="khong hop le tren"-->
+{% endblock %}
